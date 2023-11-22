@@ -1,3 +1,5 @@
+# Projet
+
 Réaliser un moteur de recherche qui permet de rechercher des informations sur un artiste, un concert ou un lieu de concert en exploitant des API REST. ​
 
 ​
@@ -7,3 +9,4 @@ Ce moteur de recherche doit contenir un champ de recherche, des champs de filtra
 ​
 
 Vous pouvez exploiter les APIs suivantes ainsi que toutes APIs que vous pourrez trouver sur Internet ou Mashape ( https://market.mashape.com/ ) : Flickr (https://www.flickr.com/services/api/ ), LastFM (https://www.last.fm/api ), Google Places, Wikipedia API, Eventbrite, etc.​
+

@@ -1,0 +1,12 @@
+<div>
+    <input type="text" placeholder="Search for concerts" [(ngModel)]="searchQuery">
+    <button (click)="searchConcerts()">Search</button>
+</div>
+<div *ngIf="noResults">
+    <p>No results found.</p>
+</div>
+<div *ngIf="showResults">
+    <div *ngFor="let photo of concertPhotos">
+        <img [src]="photo.url_m" alt="{{ photo.title }}">
+    </div>
+</div>
