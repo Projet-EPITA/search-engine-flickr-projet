@@ -87,12 +87,21 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/owl.carousel/dist/assets/owl.carousel.min.css",
+              "node_modules/owl.carousel/dist/assets/owl.theme.default.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/owl.carousel/dist/owl.carousel.min.js"
+            ]
+            
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "f8e884bd-5737-41d3-8cf8-8ec16eaa4ea4"
   }
 }

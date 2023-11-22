@@ -2,11 +2,21 @@
     <input type="text" placeholder="Search for concerts" [(ngModel)]="searchQuery">
     <button (click)="searchConcerts()">Search</button>
 </div>
+
+<div>
+    <label>
+        <input type="radio" name="viewMode" value="mosaic" [(ngModel)]="viewMode"> Mosaic
+    </label>
+    <label>
+        <input type="radio" name="viewMode" value="slider" [(ngModel)]="viewMode"> Slider
+    </label>
+</div>
+
 <div *ngIf="noResults">
     <p>No results found.</p>
 </div>
-<div *ngIf="showResults">
+<div class="images" *ngIf="showResults">
     <div *ngFor="let photo of concertPhotos">
-        <img [src]="photo.url_m" alt="{{ photo.title }}">
+        <a href="#"><img [src]="photo.url_m" alt="{{ photo.title }}"></a>
     </div>
 </div>

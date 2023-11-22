@@ -1,0 +1,45 @@
+/* Style de la barre de recherche */
+input[type="text"] {
+    width: 92%; /* Largeur de la barre de recherche */
+    padding: 10px; /* Espacement interne */
+    border: 1px solid #ddd; /* Bordure légère */
+    border-radius: 20px; /* Bordures arrondies */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    margin-bottom: 20px; /* Espace sous la barre de recherche */
+}
+
+/* Style du bouton de recherche */
+button {
+    width: 6%;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: #4285F4; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    cursor: pointer; /* Curseur de pointeur */
+}
+
+/* Conteneur des images */
+.images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centrer les éléments */
+}
+
+/* Style des images dans le conteneur */
+.images div {
+    margin: 10px; /* Espacement entre les images */
+    flex: 0 0 200px; /* Flex basis à 200px */
+}
+
+.images img {
+    width: 100%; /* Largeur de l'image à 100% de son conteneur */
+    height: 150px; /* Hauteur fixe pour toutes les images */
+    object-fit: cover; /* Gère les images de différentes tailles */
+    border-radius: 10px; /* Bordures arrondies pour esthétique */
+}
+
+.modal-body img {
+    width: 100%; /* Largeur complète de la modal */
+    height: auto; /* Hauteur automatique pour maintenir le ratio */
+}

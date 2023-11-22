@@ -11,7 +11,8 @@ export class ConcertSearchComponent {
   concertPhotos: any[] = [];
   noResults: boolean = false;
   showResults: boolean = false;
-
+  viewMode: string = 'mosaic';
+  
   constructor(private http: HttpClient) {}
 
   searchConcerts() {
