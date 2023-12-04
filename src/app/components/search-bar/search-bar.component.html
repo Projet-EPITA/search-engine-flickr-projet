@@ -17,6 +17,8 @@
 </div>
 <div class="images" *ngIf="showResults">
     <div *ngFor="let photo of photos">
-        <a href="#"><img [src]="photo.url_m" alt="{{ photo.title }}"></a>
+        <a [routerLink]="['/image-details']" [queryParams]="{ title: photo.title, author: 'Unknown' }">
+            <img [src]="photo.url_m" alt="{{ photo.title }}">
+        </a>
     </div>
 </div>
