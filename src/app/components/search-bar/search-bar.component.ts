@@ -1,44 +1,36 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FlickrService } from 'src/app/services/flickr.service';
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.css']
 })
-export class SearchBarComponent {
-  searchQuery: string = '';
-  photos: any[] = [];
-  noResults: boolean = false;
-  showResults: boolean = false;
-  viewMode: string = 'mosaic';
-  
-  constructor(private http: HttpClient) {}
+export class SearchBarComponent implements OnInit {
+  images: any[] = [];
+  keyword: string = '';
 
-  search() {
-    const apiKey = 'aeec917977c8270ecd1c269acd38cf69';
-    const flickrApiUrl = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=${this.searchQuery}&format=json&nojsoncallback=1`;
+  constructor(private flickrService: FlickrService) { }
 
-    this.http.get(flickrApiUrl).subscribe((response: any) => {
-      if (response.photos && response.photos.photo.length > 0) {
-        this.photos = response.photos.photo.map((photo: any) => {
-          return {
-            url_m: `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`,
-            title: photo.title
-          };
+  ngOnInit() {
+  }
+
+  search(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.keyword = target.value.toLowerCase();
+    if (this.keyword && this.keyword.length > 0) {
+      this.flickrService.searchKeyword(this.keyword)
+        .toPromise()
+        .then(res => {
+          if (Array.isArray(res)) {
+            this.images = res;
+          } else {
+            console.error('Invalid response format.');
+          }
+        })
+        .catch(err => {
+          console.error('Error searching images:', err);
         });
-        this.showResults = true;
-        this.noResults = false;
-      } else {
-        this.showResults = false;
-        this.noResults = true;
-        this.photos = [];
-      }
-    }, (error) => {
-      console.error('Error fetching data:', error);
-      this.showResults = false;
-      this.noResults = true;
-      this.photos = [];
-    });
+    }
   }
 }

@@ -1,24 +1,15 @@
-<div>
-    <input type="text" placeholder="Search for images" [(ngModel)]="searchQuery">
-    <button (click)="search()">Search</button>
-</div>
-
-<div>
-    <label>
-        <input type="radio" name="viewMode" value="mosaic" [(ngModel)]="viewMode"> Mosaic
-    </label>
-    <label>
-        <input type="radio" name="viewMode" value="slider" [(ngModel)]="viewMode"> Slider
-    </label>
-</div>
-
-<div *ngIf="noResults">
-    <p>No results found.</p>
-</div>
-<div class="images" *ngIf="showResults">
-    <div *ngFor="let photo of photos">
-        <a [routerLink]="['/image-details']" [queryParams]="{ title: photo.title, author: 'Unknown' }">
-            <img [src]="photo.url_m" alt="{{ photo.title }}">
-        </a>
+<div class="container">
+    <h1 class="text-center">Flickr</h1>
+    <div class="form-group">
+      <input type="search" class="form-control" (keyup)="search($event)" placeholder="Search images">
     </div>
-</div>
+  
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-4 p-3" *ngFor="let image of images">
+        <div class="card">
+          <a href="{{image.url}}_b.jpg">
+            <img src="{{image.url}}_m.jpg" title="{{image.title}}">
+          </a>
+        </div>
+      </div>
+  </div>
