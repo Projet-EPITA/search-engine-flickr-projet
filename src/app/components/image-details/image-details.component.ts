@@ -30,6 +30,7 @@ export class ImageDetailsComponent implements OnInit {
       .subscribe(
         (data: FlickrPhotoInfo) => {
           this.photoInfo = data; 
+          console.log("what is the title :", this.photoInfo.title._content);
         
         },
         (error) => {
