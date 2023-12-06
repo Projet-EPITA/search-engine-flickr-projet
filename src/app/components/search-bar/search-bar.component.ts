@@ -15,6 +15,10 @@ export class SearchBarComponent implements OnInit {
   ngOnInit() {
   }
 
+  logId(id: string) {
+    console.log('Clicked Image ID:', id);
+  }
+  
   search(event: Event) {
     const target = event.target as HTMLInputElement;
     this.keyword = target.value.toLowerCase();

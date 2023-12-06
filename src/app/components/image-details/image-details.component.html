@@ -1,0 +1,11 @@
+<div *ngIf="photoInfo">
+    <h2>{{ photoInfo.title }}</h2>
+    <p><strong>Owner:</strong> {{ photoInfo.owner.username }}</p>
+    <p><strong>Real Name:</strong> {{ photoInfo.owner.realname }}</p>
+    <p><strong>Location:</strong> {{ photoInfo.owner.location }}</p>
+    <p><strong>Description:</strong> {{ photoInfo.description._content }}</p>
+</div>
+
+<div *ngIf="!photoInfo">
+    <p>Loading...</p>
+</div>
