@@ -1,5 +1,5 @@
 /* Style de la barre de recherche */
-input[type="text"] {
+input[type="search"] {
     width: 92%; /* Largeur de la barre de recherche */
     padding: 10px; /* Espacement interne */
     border: 1px solid #ddd; /* Bordure légère */

@@ -4,7 +4,28 @@
     <input type="search" class="form-control" (keyup)="search($event)" placeholder="Search images">
   </div>
 
-  <div class="row">
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-6">
+        <!-- <select class="form-control" id="imageSizeFilter" [(ngModel)]="imageSizeFilter" (change)="applyFilters()"> -->
+        <select class="form-control" id="imageSizeFilter">
+          <option value="">All Sizes</option>
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+        </select>
+        <!-- <select class="form-control" id="dateFilter" [(ngModel)]="dateFilter" (change)="applyFilters()"> -->
+        <select class="form-control" id="dateFilter">
+            <option value="">All Dates</option>
+          <option value="lastweek">Last Week</option>
+          <option value="lastmonth">Last Month</option>
+          <option value="lastyear">Last Year</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row images">
     <div class="col-sm-12 col-md-6 col-lg-4 p-3" *ngFor="let image of images">
       <div class="card">
         <a [routerLink]="['/details', image.id]" (click)="logId(image.id)">

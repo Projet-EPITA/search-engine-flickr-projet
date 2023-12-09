@@ -17,6 +17,7 @@ export interface FlickrPhotoInfo {
   id: string;
   secret: string;
   server: string;
+
   title: {
     _content: string; 
   };
@@ -29,11 +30,27 @@ export interface FlickrPhotoInfo {
   description: {
     _content: string;
   };
+  dateTaken: string;
+  tags: string;
 }
 
 export interface FlickrSearchResult {
   photos: {
     photo: FlickrPhoto[];
+  };
+}
+
+export interface FlickrPhotoSize {
+  label: string;
+  width: number;
+  height: number;
+  source: string;
+  url: string;
+}
+
+export interface FlickrPhotoSizesResult {
+  sizes: {
+    size: FlickrPhotoSize[];
   };
 }
 
@@ -89,10 +106,19 @@ export class FlickrService {
           },
           description: {
             _content: res.photo.description._content
-          }
-
+          },
+          dateTaken: res.photo.dates.taken,
+          tags: res.photo.tags.tag.map((tag: any) => tag.raw).join(', ')
         };
       })
     );
   }
+
+  getSizes(photoId: string) {
+    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=${environment.flickr.key}&photo_id=${photoId}&format=json&nojsoncallback=1`;
+    return this.http.get<FlickrPhotoSizesResult>(url).pipe(
+      map((res: any) => res.sizes.size)
+    );
+  }
+
 }

@@ -1,9 +1,15 @@
 <div *ngIf="photoInfo">
+    <div *ngIf="originalSize">
+        <img [src]="originalSize.source" [alt]="photoInfo.title?._content">
+    </div>
     <h2>{{ photoInfo.title?._content || 'Unknown' }}</h2>
     <p><strong>Owner:</strong> {{ photoInfo.owner?.username || 'Unknown' }}</p>
     <p><strong>Real Name:</strong> {{ photoInfo.owner?.realname || 'Unknown' }}</p>
     <p><strong>Location:</strong> {{ photoInfo.owner?.location || 'Unknown' }}</p>
     <p><strong>Description:</strong> {{ photoInfo.description?._content || 'No Description' }}</p>
+    <p><strong>Date:</strong> {{ photoInfo.dateTaken || 'Unknown' }}</p>
+    <p><strong>Tags:</strong> {{ photoInfo.tags || 'No Tags' }}</p>
+    <p *ngIf="selectedSize"><strong>Taille:</strong> {{ selectedSize.width }}x{{ selectedSize.height || 'No Size' }} pixels</p>
 </div>
 
 <div *ngIf="!photoInfo">
