@@ -1,12 +1,11 @@
 # Projet
 
-Réaliser un moteur de recherche qui permet de rechercher des informations sur un artiste, un concert ou un lieu de concert en exploitant des API REST. ​
+Réaliser un moteur de recherche de photos qui exploite l’API de Yahoo Flickr ( https://www.flickr.com/services/api/ ), HTML/CSS (Bootstrap optionnel) & Angular. 
 
-​
+Ce moteur de recherche doit contenir un champ de recherche, des champs de filtrage (taille de l’image, date minimum d’upload de la photo, date maximale d’upload de la photo, tri grâce à divers paramètres, recherche NSFW, tags supplémentaires, appartient ou non à une galerie, etc.) et une zone qui permet de voir les photos soit par liste (comme le propose Google Images) soit dans un Slider avec des flèches gauche et droite. 
 
-Ce moteur de recherche doit contenir un champ de recherche, des champs de filtrage (si nécessaire) et une zone permettant d’afficher photos, biographique, dates de concert, position géographique du lieu, magasins/restaurants autour du lieu, etc. suivant les informations que vous pourrez trouver. ​
+En cliquant sur une photo, on doit pouvoir obtenir les données (nom, etc.) de son auteur, les autres photos de l’auteur, les commentaires de la photo, la position géographique et tout autre élément que vous pourrez récupérer.
 
-​
+# Utilisation de l'API
 
-Vous pouvez exploiter les APIs suivantes ainsi que toutes APIs que vous pourrez trouver sur Internet ou Mashape ( https://market.mashape.com/ ) : Flickr (https://www.flickr.com/services/api/ ), LastFM (https://www.last.fm/api ), Google Places, Wikipedia API, Eventbrite, etc.​
-
+Pour pouvoir intéragir avec l'API Flickr, il faut mettre sa clé dans le fichier src/app/environment.ts

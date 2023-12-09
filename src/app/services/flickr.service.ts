@@ -8,7 +8,27 @@ export interface FlickrPhoto {
   id: string;
   secret: string;
   server: string;
-  title: string;
+  title: {
+    _content: string;
+  };
+}
+
+export interface FlickrPhotoInfo {
+  id: string;
+  secret: string;
+  server: string;
+  title: {
+    _content: string; 
+  };
+  owner: {
+    nsid: string;
+    username: string;
+    realname: string;
+    location: string;
+  };
+  description: {
+    _content: string;
+  };
 }
 
 export interface FlickrSearchResult {
@@ -42,10 +62,36 @@ export class FlickrService {
       map((res: FlickrSearchResult) => {
         return res.photos.photo.map((photo: FlickrPhoto) => {
           return {
+            id : photo.id,
             url: `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`,
             title: photo.title
           };
         });
+      })
+    );
+  }
+
+  getPhotoInfo(photoId: string) {
+    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=${environment.flickr.key}&photo_id=${photoId}&format=json&nojsoncallback=1`;
+
+    return this.http.get<FlickrPhotoInfo>(url).pipe(
+      map((res: any) => {
+        return {
+          id: res.photo.id,
+          secret: res.photo.secret,
+          server: res.photo.server,
+          title: res.photo.title,
+          owner: {
+            nsid: res.photo.owner.nsid,
+            username: res.photo.owner.username,
+            realname: res.photo.owner.realname,
+            location: res.photo.owner.location
+          },
+          description: {
+            _content: res.photo.description._content
+          }
+
+        };
       })
     );
   }
