@@ -1,27 +1,29 @@
 <div class="container">
   <h1 class="text-center">Flickr Photo Search Engine Project</h1>
   <div class="form-group">
-    <input type="search" [(ngModel)]="keyword" (keyup)="search($event)" placeholder="Search images">
-  </div>
+    <input type="search" [(ngModel)]="keyword" (keyup)="search()" placeholder="Search images">
+    <div class="filters">
+      <input type="date" [(ngModel)]="minUploadDate">
+  
+      <input type="date" [(ngModel)]="maxUploadDate">
+  
+      <select [(ngModel)]="sort">
+        <option value="date-posted-asc">Date Posted Ascending</option>
+      </select>
+      
+      
 
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-6">
-        <!-- <select class="form-control" id="imageSizeFilter" [(ngModel)]="imageSizeFilter" (change)="applyFilters()"> -->
-        <select class="form-control" id="imageSizeFilter">
-          <option value="">All Sizes</option>
-          <option value="small">Small</option>
-          <option value="medium">Medium</option>
-          <option value="large">Large</option>
-        </select>
-        <!-- <select class="form-control" id="dateFilter" [(ngModel)]="dateFilter" (change)="applyFilters()"> -->
-        <select class="form-control" id="dateFilter">
-            <option value="">All Dates</option>
-          <option value="lastweek">Last Week</option>
-          <option value="lastmonth">Last Month</option>
-          <option value="lastyear">Last Year</option>
-        </select>
-      </div>
+      <label>
+        <input type="checkbox" [(ngModel)]="nsfw"> NSFW
+      </label>
+  
+      <input type="text" [(ngModel)]="tags" placeholder="Tags (comma separated)">
+  
+      <label>
+        <input type="checkbox" [(ngModel)]="inGallery"> In Gallery
+      </label>
+  
+      <button (click)="applyFilters()">Apply Filters</button>
     </div>
   </div>
 

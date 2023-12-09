@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FlickrService } from 'src/app/services/flickr.service';
+import { FlickrSearchParams, FlickrService } from 'src/app/services/flickr.service';
 import { SearchService } from 'src/app/services/search.service'; // Assurez-vous que le chemin est correct
 
 @Component({
@@ -10,6 +10,12 @@ import { SearchService } from 'src/app/services/search.service'; // Assurez-vous
 export class SearchBarComponent implements OnInit {
   images: any[] = [];
   keyword: string = '';
+  minUploadDate: string = ''; 
+  maxUploadDate: string = '';
+  sort: string = ''; 
+  nsfw: boolean = false;
+  tags: string = ''; 
+  inGallery: boolean = false;
 
   constructor(
     private flickrService: FlickrService,
@@ -17,19 +23,34 @@ export class SearchBarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Récupérer l'état de la recherche en mémoire
     this.keyword = this.searchService.getKeyword();
     this.images = this.searchService.getImages();
+    this.minUploadDate = ''; // Ou toute autre valeur par défaut appropriée
+    this.maxUploadDate = ''; // Ou toute autre valeur par défaut appropriée
+    this.sort = ''; // Ou toute autre valeur par défaut appropriée
+    this.nsfw = false; // Ou toute autre valeur par défaut appropriée
+    this.tags = ''; // Ou toute autre valeur par défaut appropriée
+    this.inGallery = false;
   }
 
-  search(event: Event) {
-    const target = event.target as HTMLInputElement;
+  // Dans SearchBarComponent
+
+  search() {
     this.keyword = this.keyword.toLowerCase();
     this.searchService.setKeyword(this.keyword);
-    
 
     if (this.keyword && this.keyword.length > 0) {
-      this.flickrService.searchKeyword(this.keyword)
+      const searchParams: FlickrSearchParams = {
+        keyword: this.keyword,
+        minUploadDate: this.minUploadDate,
+        maxUploadDate: this.maxUploadDate,
+        sort: this.sort,
+        nsfw: this.nsfw,
+        tags: this.tags,
+        inGallery: this.inGallery,
+      };
+
+      this.flickrService.searchKeyword(searchParams)
         .toPromise()
         .then(res => {
           if (Array.isArray(res)) {
@@ -44,4 +65,34 @@ export class SearchBarComponent implements OnInit {
         });
     }
   }
+
+  applyFilters() {
+    const searchParams: FlickrSearchParams = {
+      keyword: this.keyword,
+      minUploadDate: this.minUploadDate,
+      maxUploadDate: this.maxUploadDate,
+      sort: this.sort,
+      nsfw: this.nsfw,
+      tags: this.tags,
+      inGallery: this.inGallery,
+    };
+  
+    this.flickrService.searchKeyword(searchParams)
+    .toPromise()
+    .then(res => {
+      if (res) {
+        this.images = res;
+        this.searchService.setImages(res);
+      } else {
+        this.images = [];
+        this.searchService.setImages([]);
+      }
+    })
+    .catch(err => {
+      console.error('Error searching images:', err);
+      this.images = [];
+      this.searchService.setImages([]);
+    });
+  }
+  
 }

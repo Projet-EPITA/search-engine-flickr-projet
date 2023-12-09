@@ -48,7 +48,6 @@ export class ImageDetailsComponent implements OnInit {
     this.flickrService.getSizes(photoId).subscribe(
       (sizes: FlickrPhotoSize[]) => {
         this.photoSizes = sizes;
-        // Trouver la taille "Original"
         this.originalSize = sizes.find(size => size.label === 'Original') ?? null;
       },
       error => {

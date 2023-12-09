@@ -40,6 +40,16 @@ export interface FlickrSearchResult {
   };
 }
 
+export interface FlickrSearchParams {
+  keyword: string;
+  minUploadDate?: string;
+  maxUploadDate?: string;
+  sort?: string; 
+  nsfw?: boolean;
+  tags?: string; 
+  inGallery?: boolean; 
+}
+
 export interface FlickrPhotoSize {
   label: string;
   width: number;
@@ -60,11 +70,11 @@ export interface FlickrPhotoSizesResult {
 export class FlickrService {
   previousKeyword: string = '';
   currentPage: number = 1;
-  itemsPerPage: number = 12;
+  itemsPerPage: number = 20;
 
   constructor(private http: HttpClient) { }
 
-  searchKeyword(keyword: string) {
+  /*searchKeyword(keyword: string) {
     if (this.previousKeyword === keyword) {
       this.currentPage++;
     } else {
@@ -75,6 +85,30 @@ export class FlickrService {
     const url = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&';
     const queryParams = `api_key=${environment.flickr.key}&text=${keyword}&format=json&nojsoncallback=1&per_page=${this.itemsPerPage}&page=${this.currentPage}`;
 
+    return this.http.get<FlickrSearchResult>(url + queryParams).pipe(
+      map((res: FlickrSearchResult) => {
+        return res.photos.photo.map((photo: FlickrPhoto) => {
+          return {
+            id : photo.id,
+            url: `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`,
+            title: photo.title
+          };
+        });
+      })
+    );
+  }*/
+
+  searchKeyword(params: FlickrSearchParams) {
+    let queryParams = `api_key=${environment.flickr.key}&format=json&nojsoncallback=1&per_page=12&text=${params.keyword}`;
+  
+    if (params.minUploadDate) queryParams += `&min_upload_date=${params.minUploadDate}`;
+    if (params.maxUploadDate) queryParams += `&max_upload_date=${params.maxUploadDate}`;
+    if (params.sort) queryParams += `&sort=${params.sort}`;
+    if (params.nsfw !== undefined) queryParams += `&safe_search=${params.nsfw ? 1 : 3}`;
+    if (params.tags) queryParams += `&tags=${params.tags}`;
+    if (params.inGallery !== undefined) queryParams += `&in_gallery=${params.inGallery ? 1 : 0}`;
+  
+    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&${queryParams}`;
     return this.http.get<FlickrSearchResult>(url + queryParams).pipe(
       map((res: FlickrSearchResult) => {
         return res.photos.photo.map((photo: FlickrPhoto) => {
