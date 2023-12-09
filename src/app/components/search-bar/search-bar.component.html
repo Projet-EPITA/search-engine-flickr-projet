@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="text-center">Flickr Photo Search Engine Project</h1>
   <div class="form-group">
-    <input type="search" class="form-control" (keyup)="search($event)" placeholder="Search images">
+    <input type="search" [(ngModel)]="keyword" (keyup)="search($event)" placeholder="Search images">
   </div>
 
   <div class="form-group">
@@ -28,7 +28,7 @@
   <div class="row images">
     <div class="col-sm-12 col-md-6 col-lg-4 p-3" *ngFor="let image of images">
       <div class="card">
-        <a [routerLink]="['/details', image.id]" (click)="logId(image.id)">
+        <a [routerLink]="['/details', image.id]" >
           <img src="{{image.url}}_m.jpg" title="{{image.title}}">
         </a>
       </div>

@@ -9,7 +9,7 @@
     <p><strong>Description:</strong> {{ photoInfo.description?._content || 'No Description' }}</p>
     <p><strong>Date:</strong> {{ photoInfo.dateTaken || 'Unknown' }}</p>
     <p><strong>Tags:</strong> {{ photoInfo.tags || 'No Tags' }}</p>
-    <p *ngIf="selectedSize"><strong>Taille:</strong> {{ selectedSize.width }}x{{ selectedSize.height || 'No Size' }} pixels</p>
+    <p *ngIf="originalSize"><strong>Taille:</strong> {{ originalSize.width }}x{{ originalSize.height || 'No Size' }} pixels</p>
 </div>
 
 <div *ngIf="!photoInfo">
