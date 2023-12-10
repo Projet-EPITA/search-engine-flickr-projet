@@ -29,6 +29,7 @@ export interface FlickrPhotoInfo {
   };
   description: {
     _content: string;
+    parsedContent : string;
   };
   dateTaken: string;
   tags: string;
@@ -74,32 +75,8 @@ export class FlickrService {
 
   constructor(private http: HttpClient) { }
 
-  /*searchKeyword(keyword: string) {
-    if (this.previousKeyword === keyword) {
-      this.currentPage++;
-    } else {
-      this.currentPage = 1;
-    }
-    this.previousKeyword = keyword;
-
-    const url = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&';
-    const queryParams = `api_key=${environment.flickr.key}&text=${keyword}&format=json&nojsoncallback=1&per_page=${this.itemsPerPage}&page=${this.currentPage}`;
-
-    return this.http.get<FlickrSearchResult>(url + queryParams).pipe(
-      map((res: FlickrSearchResult) => {
-        return res.photos.photo.map((photo: FlickrPhoto) => {
-          return {
-            id : photo.id,
-            url: `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`,
-            title: photo.title
-          };
-        });
-      })
-    );
-  }*/
-
   searchKeyword(params: FlickrSearchParams) {
-    let queryParams = `api_key=${environment.flickr.key}&format=json&nojsoncallback=1&per_page=12&text=${params.keyword}`;
+    let queryParams = `api_key=${environment.flickr.key}&format=json&nojsoncallback=1&per_page=102&text=${params.keyword}`;
   
     if (params.minUploadDate) queryParams += `&min_upload_date=${params.minUploadDate}`;
     if (params.maxUploadDate) queryParams += `&max_upload_date=${params.maxUploadDate}`;
@@ -122,11 +99,18 @@ export class FlickrService {
     );
   }
 
+
+  parseDescription(description: string): string {
+    const urlRegex = /(?:https?|ftp):\/\/[^\s/$.?#].[^\s"]*(?![^<]*>)/g;
+    return description.replace(urlRegex, (url) => `<a href="${url}" target="_blank">${url}</a>`);
+  }
+
   getPhotoInfo(photoId: string) {
     const url = `https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=${environment.flickr.key}&photo_id=${photoId}&format=json&nojsoncallback=1`;
 
     return this.http.get<FlickrPhotoInfo>(url).pipe(
       map((res: any) => {
+        const parsedDescription = this.parseDescription(res.photo.description._content);
         return {
           id: res.photo.id,
           secret: res.photo.secret,
@@ -139,7 +123,8 @@ export class FlickrService {
             location: res.photo.owner.location
           },
           description: {
-            _content: res.photo.description._content
+            _content: res.photo.description._content,
+            parsedContent: parsedDescription
           },
           dateTaken: res.photo.dates.taken,
           tags: res.photo.tags.tag.map((tag: any) => tag.raw).join(', ')

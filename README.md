@@ -1,4 +1,4 @@
-# Projet
+# Project search-engine-flickr
 
 Réaliser un moteur de recherche de photos qui exploite l’API de Yahoo Flickr ( https://www.flickr.com/services/api/ ), HTML/CSS (Bootstrap optionnel) & Angular. 
 

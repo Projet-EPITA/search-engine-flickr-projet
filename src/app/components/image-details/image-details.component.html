@@ -6,7 +6,8 @@
     <p><strong>Owner:</strong> {{ photoInfo.owner?.username || 'Unknown' }}</p>
     <p><strong>Real Name:</strong> {{ photoInfo.owner?.realname || 'Unknown' }}</p>
     <p><strong>Location:</strong> {{ photoInfo.owner?.location || 'Unknown' }}</p>
-    <p><strong>Description:</strong> {{ photoInfo.description?._content || 'No Description' }}</p>
+    <p><strong>Description:</strong></p>
+    <div [innerHTML]="photoInfo.description?.parsedContent || 'No Description'"></div>
     <p><strong>Date:</strong> {{ photoInfo.dateTaken || 'Unknown' }}</p>
     <p><strong>Tags:</strong> {{ photoInfo.tags || 'No Tags' }}</p>
     <p *ngIf="originalSize"><strong>Taille:</strong> {{ originalSize.width }}x{{ originalSize.height || 'No Size' }} pixels</p>

@@ -3,16 +3,15 @@
   <div class="form-group">
     <input type="search" [(ngModel)]="keyword" (keyup)="search()" placeholder="Search images">
     <div class="filters">
+      <p>From Date ...</p>   
       <input type="date" [(ngModel)]="minUploadDate">
-  
+      <p>To Date ...</p>
       <input type="date" [(ngModel)]="maxUploadDate">
-  
+      <p>Sort :</p>
       <select [(ngModel)]="sort">
         <option value="date-posted-asc">Date Posted Ascending</option>
       </select>
-      
-      
-
+      <p>Other filters :</p>
       <label>
         <input type="checkbox" [(ngModel)]="nsfw"> NSFW
       </label>
