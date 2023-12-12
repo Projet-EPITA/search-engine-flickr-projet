@@ -9,3 +9,7 @@ En cliquant sur une photo, on doit pouvoir obtenir les données (nom, etc.) de s
 # Utilisation de l'API
 
 Pour pouvoir intéragir avec l'API Flickr, il faut mettre sa clé dans le fichier src/app/environment.ts
+
+# Lancer le projet
+
+A la racine du projet, lance le projet avec la commande `ng serve`.
