@@ -1,0 +1,9 @@
+eslint:
+  image: node:latest
+  before_script:
+    - npm install -g eslint
+    - npm install
+  script:
+    - eslint .
+  only:
+    - master  # Run ESLint only on the master branch, adjust as needed
