@@ -96,13 +96,24 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/owl.carousel/dist/owl.carousel.min.js"
             ]
-            
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
     }
   },
   "cli": {
-    "analytics": "f8e884bd-5737-41d3-8cf8-8ec16eaa4ea4"
+    "analytics": "f8e884bd-5737-41d3-8cf8-8ec16eaa4ea4",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
