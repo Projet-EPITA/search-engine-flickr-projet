@@ -1,38 +1,54 @@
-<div class="container">
-  <h1 class="text-center">Flickr Photo Search Engine Project</h1>
-  <div class="form-group">
-    <input type="search" [(ngModel)]="keyword" (keyup)="search()" placeholder="Search images">
-    <div class="filters">
-      <p>From Date ...</p>   
-      <input type="date" [(ngModel)]="minUploadDate">
-      <p>To Date ...</p>
-      <input type="date" [(ngModel)]="maxUploadDate">
-      <p>Sort :</p>
-      <select [(ngModel)]="sort">
-        <option value="date-posted-asc">Date Posted Ascending</option>
-      </select>
-      <p>Other filters :</p>
-      <label>
-        <input type="checkbox" [(ngModel)]="nsfw"> NSFW
-      </label>
-  
-      <input type="text" [(ngModel)]="tags" placeholder="Tags (comma separated)">
-  
-      <label>
-        <input type="checkbox" [(ngModel)]="inGallery"> In Gallery
-      </label>
-  
-      <button (click)="applyFilters()">Apply Filters</button>
+
+<div class="row">
+  <div class="col-4">
+    <div class="container bg-light p-3 rounded-4" id="search-bar">
+      <div class="row">
+        <div class="mb-3">
+          <label for="search" class="form-label fw-bold">Rechercher une image :</label>
+          <input type="text" class="form-control" id="search" [(ngModel)]="keyword" (keyup)="search()" placeholder="Nom d'une image">
+        </div>
+
+        <div class="mb-3 col-6">
+          <label for="minUploadDate" class="form-label">Entre le :</label>
+          <input type="date" [(ngModel)]="minUploadDate" class="form-control">
+        </div>
+        <div class="mb-3 col-6">
+          <label for="maxUploadDate" class="form-label">Fin avant le :</label>
+          <input type="date" [(ngModel)]="maxUploadDate" class="form-control">
+        </div>
+        <div class="mb-3 col-6">
+          <span>Sort :</span>
+          <select [(ngModel)]="sort" class="form-select" value="date-posted-asc">
+            <option selected value="date-posted-desc">Date Descending</option>
+          </select>
+        </div>
+        <div class="mb-3 col-6 d-flex align-items-center">
+          <input type="checkbox" [(ngModel)]="inGallery" class="form-check-input"> En galerie
+        </div>
+        <div class="mb-3">
+          <label for="tags" class="form-label">Tags :</label>
+          <div class="input-group mb-3">
+            <div class="input-group-text">
+              <label for="nsfw" class="form-check-label me-2">NSFW</label>
+              <input type="checkbox" [(ngModel)]="nsfw" class="form-check-input"> 
+            </div>
+            <input id="tags" type="text" [(ngModel)]="tags" placeholder="Ex : cat, dog" class="form-control">
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary me-2" (click)="applyFilters()">Search</button>
+      <button class="btn btn-success" onclick="window.location.reload()">Reset</button>
     </div>
   </div>
 
-  <div class="row images">
-    <div class="col-sm-12 col-md-6 col-lg-4 p-3" *ngFor="let image of images">
-      <div class="card">
-        <a [routerLink]="['/details', image.id]" >
-          <img src="{{image.url}}_m.jpg" title="{{image.title}}">
-        </a>
-      </div>
-      
+  <div class="col-8">
+    <div class="row images">
+      <div class="col-sm-12 col-md-6 col-lg-4 pe-3 pb-3" *ngFor="let image of images">
+        <div class="card">
+          <a [routerLink]="['/details', image.id]" data-fancybox="gallery">
+            <img src="{{image.url}}_m.jpg" title="{{image.title}}">
+          </a>
+        </div>
     </div>
+  </div>
 </div>
