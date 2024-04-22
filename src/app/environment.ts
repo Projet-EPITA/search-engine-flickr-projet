@@ -1,5 +1,5 @@
 export const environment = {
     flickr: {
-      key: 'aeec917977c8270ecd1c269acd38cf69'
+      key: 'c259b8f3508eaaae4b36bc1c4dc140bd'
     }
   };

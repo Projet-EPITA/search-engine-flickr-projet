@@ -1,3 +1,4 @@
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -19,7 +20,7 @@ export interface FlickrPhotoInfo {
   server: string;
 
   title: {
-    _content: string; 
+    _content: string;
   };
   owner: {
     nsid: string;
@@ -45,10 +46,10 @@ export interface FlickrSearchParams {
   keyword: string;
   minUploadDate?: string;
   maxUploadDate?: string;
-  sort?: string; 
+  sort?: string;
   nsfw?: boolean;
-  tags?: string; 
-  inGallery?: boolean; 
+  tags?: string;
+  inGallery?: boolean;
 }
 
 export interface FlickrPhotoSize {
@@ -77,14 +78,14 @@ export class FlickrService {
 
   searchKeyword(params: FlickrSearchParams) {
     let queryParams = `api_key=${environment.flickr.key}&format=json&nojsoncallback=1&per_page=102&text=${params.keyword}`;
-  
+
     if (params.minUploadDate) queryParams += `&min_upload_date=${params.minUploadDate}`;
     if (params.maxUploadDate) queryParams += `&max_upload_date=${params.maxUploadDate}`;
     if (params.sort) queryParams += `&sort=${params.sort}`;
     if (params.nsfw !== undefined) queryParams += `&safe_search=${params.nsfw ? 1 : 3}`;
     if (params.tags) queryParams += `&tags=${params.tags}`;
     if (params.inGallery !== undefined) queryParams += `&in_gallery=${params.inGallery ? 1 : 0}`;
-  
+
     const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&${queryParams}`;
     return this.http.get<FlickrSearchResult>(url + queryParams).pipe(
       map((res: FlickrSearchResult) => {

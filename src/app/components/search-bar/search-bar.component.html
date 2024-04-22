@@ -3,7 +3,7 @@
   <div class="form-group">
     <input type="search" [(ngModel)]="keyword" (keyup)="search()" placeholder="Search images">
     <div class="filters">
-      <p>From Date ...</p>   
+      <p>From Date ...</p>
       <input type="date" [(ngModel)]="minUploadDate">
       <p>To Date ...</p>
       <input type="date" [(ngModel)]="maxUploadDate">
@@ -15,13 +15,13 @@
       <label>
         <input type="checkbox" [(ngModel)]="nsfw"> NSFW
       </label>
-  
+
       <input type="text" [(ngModel)]="tags" placeholder="Tags (comma separated)">
-  
+
       <label>
         <input type="checkbox" [(ngModel)]="inGallery"> In Gallery
       </label>
-  
+
       <button (click)="applyFilters()">Apply Filters</button>
     </div>
   </div>
@@ -30,9 +30,9 @@
     <div class="col-sm-12 col-md-6 col-lg-4 p-3" *ngFor="let image of images">
       <div class="card">
         <a [routerLink]="['/details', image.id]" >
-          <img src="{{image.url}}_m.jpg" title="{{image.title}}">
+          <img alt="details" src="{{image.url}}_m.jpg" title="{{image.title}}">
         </a>
       </div>
-      
+
     </div>
 </div>
