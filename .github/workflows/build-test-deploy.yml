@@ -6,53 +6,53 @@ on:
       - "*" # Trigger on push events for all branches
 
 jobs:
-  # lint:
-  #   runs-on: ubuntu-latest
+  lint:
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-  #     - name: Set up Node.js
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: "20.x"
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20.x"
 
-  #     - name: Install dependencies
-  #       run: npm install
+      - name: Install dependencies
+        run: npm install
 
-  #     - name: Run ESLint
-  #       run: npm run lint # Adjust the lint command as needed
+      - name: Run ESLint
+        run: npm run lint # Adjust the lint command as needed
 
-  # test:
-  #   runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-  #     - name: Set up Node.js
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: "20.x"
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20.x"
 
-  #     - name: Install dependencies
-  #       run: npm install
+      - name: Install dependencies
+        run: npm install
 
-  #     - name: Run Tests
-  #       run: npm test # Adjust the test command as needed
+      - name: Run Tests
+        run: npm test # Adjust the test command as needed
 
-  #     - name: Code Coverage Report
-  #       uses: irongut/CodeCoverageSummary@v1.3.0
-  #       with:
-  #         filename: coverage.xml
-  #         badge: true
-  #         fail_below_min: true
-  #         format: markdown
-  #         hide_branch_rate: true
-  #         hide_complexity: true
-  #         indicators: true
-  #         output: both
+      - name: Code Coverage Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: coverage.xml
+          badge: true
+          fail_below_min: true
+          format: markdown
+          hide_branch_rate: true
+          hide_complexity: true
+          indicators: true
+          output: both
 
   build:
     name: Build
@@ -62,7 +62,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+        
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -86,6 +86,9 @@ jobs:
     needs: [build]
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
