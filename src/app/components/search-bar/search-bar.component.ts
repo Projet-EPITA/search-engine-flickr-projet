@@ -66,6 +66,8 @@ export class SearchBarComponent implements OnInit {
     }
   }
 
+  myUndefinedFunction() {};
+
   applyFilters() {
     const searchParams: FlickrSearchParams = {
       keyword: this.keyword,
