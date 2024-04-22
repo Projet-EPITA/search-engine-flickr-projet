@@ -8,13 +8,13 @@ import { SearchService } from 'src/app/services/search.service'; // Assurez-vous
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
-  images: any[] = [];
+  images: any[] = []; // eslint-disable-line @typescript-eslint/no-explicit-any
   keyword: string = '';
-  minUploadDate: string = ''; 
+  minUploadDate: string = '';
   maxUploadDate: string = '';
-  sort: string = ''; 
+  sort: string = '';
   nsfw: boolean = false;
-  tags: string = ''; 
+  tags: string = '';
   inGallery: boolean = false;
 
   constructor(
@@ -76,7 +76,7 @@ export class SearchBarComponent implements OnInit {
       tags: this.tags,
       inGallery: this.inGallery,
     };
-  
+
     this.flickrService.searchKeyword(searchParams)
     .toPromise()
     .then(res => {
@@ -94,5 +94,5 @@ export class SearchBarComponent implements OnInit {
       this.searchService.setImages([]);
     });
   }
-  
+
 }

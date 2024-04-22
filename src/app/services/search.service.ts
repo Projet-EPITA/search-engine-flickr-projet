@@ -1,3 +1,4 @@
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 // src/app/services/search.service.ts
 
 import { Injectable } from '@angular/core';
