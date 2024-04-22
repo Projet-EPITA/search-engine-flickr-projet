@@ -54,20 +54,63 @@ jobs:
           indicators: true
           output: both
 
-  deploy:
+  build:
+    name: Build
     runs-on: ubuntu-latest
-    needs: [test]  # Ensure that 'deploy' job runs only after 'test' job succeeds
+    needs: [lint, test]
 
     steps:
-      - name: Checkout code
+      - name: Checkout the files
         uses: actions/checkout@v2
-
+          
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '20.x'
-
+          
       - name: Install dependencies
         run: npm install
+          
+      - name: Build the project
+        run: npm run build
+          
+      - name: Archive production files
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist
+        
+  deploy:
+    name: Deploy to EC2 on master branch push
+    runs-on: ubuntu-latest
+    needs: [build]
+    
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: dist
 
-      # Add additional steps for deployment here, such as deploying to a hosting platform
+      - name: Deploy to server devops_epita
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_DEVOPS_EPITA_SECRET }}
+          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          SOURCE: "dist/"
+          ARGS: "-rDzvc -i --delete"
+          TARGET: ${{ secrets.TARGET_DIR }}
+
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.EC2_DEVOPS_EPITA_SECRET }}
+          script: |
+            sudo systemctl start apache2
+            sudo systemctl enable apache2
+            sudo rm -rf /var/www/html/*
+            cd home/search-photo-epita/browser
+            sudo mv * /var/www/html/
