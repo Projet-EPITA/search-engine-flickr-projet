@@ -1,66 +1,21 @@
 /* Style de la barre de recherche */
-input[type="search"] {
-    width: 100%; /* Largeur de la barre de recherche */
-    padding: 10px; /* Espacement interne */
-    border: 1px solid #ddd; /* Bordure légère */
-    border-radius: 20px; /* Bordures arrondies */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
-    margin-bottom: 20px; /* Espace sous la barre de recherche */
-}
-
-/* Conteneur des images */
-.images {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Centrer les éléments */
-}
 
 /* Style des images dans le conteneur */
-.images div {
-    margin: 10px; /* Espacement entre les images */
-    flex: 0 0 200px; /* Flex basis à 200px */
-}
 
 .images img {
-    width: 100%; /* Largeur de l'image à 100% de son conteneur */
-    height: 200px; /* Hauteur fixe pour toutes les images */
-    object-fit: cover; /* Gère les images de différentes tailles */
-    border-radius: 10px; /* Bordures arrondies pour esthétique */
+  width: 100%; /* Largeur de l'image à 100% de son conteneur */
+  height: 200px; /* Hauteur fixe pour toutes les images */
+  object-fit: cover; /* Gère les images de différentes tailles */
+  border-radius: 10px; /* Bordures arrondies pour esthétique */
 }
 
-/* Styles généraux pour les filtres */
-.filters {
-    margin-bottom: 20px;
-  }
-  
-  .filters input[type="date"],
-  .filters select,
-  .filters input[type="text"],
-  .filters label {
-    margin-right: 10px;
-    margin-bottom: 10px;
-  }
-  
-  /* Styles pour les cases à cocher */
-  .filters label {
-    display: inline-block;
-    margin-right: 20px;
-  }
-  
-  /* Styles pour le bouton */
-  button {
-    background-color: #007bff; /* Couleur bleue */
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #0056b3; /* Couleur plus foncée au survol */
-  }
-  
-  /* Ajouter plus de styles ici selon vos besoins */
-  
+button:hover {
+  background-color: gray;
+}
+
+#search-bar {
+  position: sticky;
+  top: 60px; /* Espacement du haut de la page */
+}
+
+/* Ajouter plus de styles ici selon vos besoins */

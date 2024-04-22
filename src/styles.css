@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    /* Dégradé linéaire du vert (#00ff00) au noir (#000000) */
+    /* background: linear-gradient(to bottom, #f7de8f, #000000); */
+
+    /* Ajustez les propriétés ci-dessous selon vos besoins */
+    margin: 0;
+    height: 100vh;
+    /* 100% de la hauteur de la vue */
+    color: black;
+    /* Couleur du texte, ajustez selon vos besoins */
+}
+
+#navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* couleur du texte */
+    color: black;
+}

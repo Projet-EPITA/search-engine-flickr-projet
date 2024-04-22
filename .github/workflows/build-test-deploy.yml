@@ -62,7 +62,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -79,3 +78,41 @@ jobs:
         with:
           name: dist
           path: dist
+
+  deploy:
+    name: Deploy to EC2 on master branch push
+    runs-on: ubuntu-latest
+    needs: [build]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: dist
+
+      - name: Deploy to server devops_epita
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_DEVOPS_EPITA_SECRET }}
+          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          SOURCE: "dist/"
+          ARGS: "-rDzvc -i --delete"
+          TARGET: ${{ secrets.TARGET_DIR }}
+
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.EC2_DEVOPS_EPITA_SECRET }}
+          script: |
+            sudo systemctl start apache2
+            sudo systemctl enable apache2
+            sudo rm -rf /var/www/html/*
+            cd home/concert-search-app/
+            sudo mv * /var/www/html/
