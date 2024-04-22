@@ -52,7 +52,7 @@ jobs:
           hide_branch_rate: true
           hide_complexity: true
           indicators: true
-          output: both
+          output: file
 
   build:
     name: Build
