@@ -33,7 +33,7 @@ module.exports = function (config) {
         {
           type : 'cobertura',
           // put file in the root of the project
-          dir: require('path').join(__dirname, './'),
+          dir: require('path').join(__dirname, './coverage-xml'),
           file : 'coverage.xml'
         }
       ]
