@@ -69,7 +69,7 @@ jobs:
           git config --global user.email "koudogbokonig@gmail.com"
           git add README.md
           git commit -m "Update code coverage badge"
-          git push origin main
+          git push origin coverage
 
   build:
     name: Build
