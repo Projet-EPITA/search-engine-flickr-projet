@@ -54,23 +54,6 @@ jobs:
           indicators: true
           output: both
 
-      - name: Get code coverage badge URL
-        run: |
-          badge_url=$(grep -oP "(?<=Code Coverage-)[0-9]+%" /github/workspace/code-coverage-results.md | xargs -I {} echo "https://img.shields.io/badge/Code%20Coverage-{}-success?style=flat")
-          echo "::set-output name=badge_url::$badge_url"
-
-      - name: Update README with badge URL
-        run: |
-          sed -i "1s|^|![Code Coverage](${{ steps.get_code_coverage.outputs.badge_url }})\n\n|" README.md
-
-      - name: Commit changes
-        run: |
-          git config --global user.name "CI"
-          git config --global user.email "koudogbokonig@gmail.com"
-          git add README.md
-          git commit -m "Update code coverage badge"
-          git push origin coverage
-
   build:
     name: Build
     runs-on: ubuntu-latest
