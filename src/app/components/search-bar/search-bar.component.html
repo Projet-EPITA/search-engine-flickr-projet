@@ -1,25 +1,31 @@
 <div class="row">
   <div class="col-4">
-    <div class="container bg-light p-3 rounded-4" id="search-bar">
+    <div class="container bg-success-subtle p-3" id="search-bar">
       <div class="row">
         <div class="mb-3">
-          <label for="search" class="form-label fw-bold">Rechercher une image :</label>
+          <label for="search" class="form-label fw-semibold">Rechercher une image :</label>
           <input type="text" class="form-control" id="search" [(ngModel)]="keyword" (keyup)="search()" placeholder="Nom d'une image">
         </div>
 
         <div class="mb-3 col-6">
-          <label for="minUploadDate" class="form-label">Entre le :</label>
-          <input type="date" [(ngModel)]="minUploadDate" class="form-control">
+          <div class="form-floating">
+            <input type="date" [(ngModel)]="minUploadDate" class="form-control">
+            <label for="minUploadDate" class="form-label">Entre le :</label>
+          </div>
         </div>
         <div class="mb-3 col-6">
-          <label for="maxUploadDate" class="form-label">Fin avant le :</label>
-          <input type="date" [(ngModel)]="maxUploadDate" class="form-control">
+          <div class="form-floating">
+            <input type="date" [(ngModel)]="maxUploadDate" class="form-control">
+            <label for="maxUploadDate" class="form-label">Fin avant le :</label>
+          </div>
         </div>
         <div class="mb-3 col-6">
-          <span>Sort :</span>
-          <select [(ngModel)]="sort" class="form-select" value="date-posted-asc">
-            <option selected value="date-posted-desc">Date Descending</option>
-          </select>
+          <div class="form-floating">
+            <select [(ngModel)]="sort" class="form-select" value="date-posted-asc">
+              <option selected>Date Descending</option>
+            </select>
+            <label for="sort" class="form-label">Trier par :</label>
+          </div>
         </div>
         <div class="mb-3 col-6 d-flex align-items-center">
           <input type="checkbox" [(ngModel)]="inGallery" class="form-check-input"> En galerie
