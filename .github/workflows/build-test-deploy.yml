@@ -1,5 +1,9 @@
 name: CI/CD
 
+env:
+  SENTRY_AUTH_TOKEN: "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"
+
+
 on:
   push:
     branches:
