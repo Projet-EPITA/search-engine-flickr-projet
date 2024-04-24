@@ -1,5 +1,9 @@
 # Project search-engine-flickr
 
+[![build workflow](https://github.com/Projet-EPITA/search-engine-flickr-projet/actions/workflows/build.yml/badge.svg)](https://github.com/Projet-EPITA/search-engine-flickr-projet/actions)
+[![codecov](https://codecov.io/gh/lemytranepita/Projet-EPITA/search-engine-flickr-projet/branch/main/graph/badge.svg)](https://codecov.io/gh/lemytranepita/Projet-EPITA/search-engine-flickr-projet)
+
+
 Réaliser un moteur de recherche de photos qui exploite l’API de Yahoo Flickr ( https://www.flickr.com/services/api/ ), HTML/CSS (Bootstrap optionnel) & Angular. 
 
 Ce moteur de recherche doit contenir un champ de recherche, des champs de filtrage (taille de l’image, date minimum d’upload de la photo, date maximale d’upload de la photo, tri grâce à divers paramètres, recherche NSFW, tags supplémentaires, appartient ou non à une galerie, etc.) et une zone qui permet de voir les photos soit par liste (comme le propose Google Images) soit dans un Slider avec des flèches gauche et droite. 
