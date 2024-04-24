@@ -2,7 +2,7 @@
 
 [![Build](https://github.com/Projet-EPITA/search-engine-flickr-projet/actions/workflows/build.yml/badge.svg)](https://github.com/Projet-EPITA/search-engine-flickr-projet/actions/workflows/build.yml)
 
-[![CI/CD Build Status](https://github.com/Projet-EPITA/search-engine-flickr-projet/workflows/build-test-deploy.yml/badge.svg)](https://github.com/Projet-EPITA/search-engine-flickr-projet/actions)
+[![CI/CD Build Status](https://github.com/Projet-EPITA/search-engine-flickr-projet/actions/workflows/build-test-deploy.yml/badge.svg)](https://github.com/Projet-EPITA/search-engine-flickr-projet/actions)
 
 
 
