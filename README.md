@@ -1,6 +1,6 @@
 # Project search-engine-flickr
 
-[![build workflow](https://github.com/Projet-EPITA/search-engine-flickr-projet/actions/workflows/build.yml/badge.svg)](https://github.com/Projet-EPITA/search-engine-flickr-projet/actions)
+[![Build](https://github.com/Projet-EPITA/search-engine-flickr-projet/actions/workflows/build.yml/badge.svg)](https://github.com/Projet-EPITA/search-engine-flickr-projet/actions)
 
 [![codecov](https://codecov.io/gh/Projet-EPITA/search-engine-flickr-projet/branch/main/graph/badge.svg)](https://codecov.io/gh/Projet-EPITA/search-engine-flickr-projet)
 
