@@ -114,8 +114,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_DEVOPS_EPITA_SECRET }}
           script: |
-            sudo systemctl start apache2
-            sudo systemctl enable apache2
             sudo rm -rf /var/www/html/*
             cd home/concert-search-app/
             sudo mv * /var/www/html/
