@@ -57,31 +57,6 @@ jobs:
           indicators: true
           output: both
 
-      - name: Upload coverage artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: coverage-report
-          path: coverage-xml
-          
-  publish-coverage-badge:
-      needs: test
-      runs-on: ubuntu-latest
-      steps:
-        - name: Download coverage artifact
-          uses: actions/download-artifact@v2
-          with:
-            name: coverage-report
-            path: coverage-xml
-  
-        - name: Copy coverage badge to artifacts
-          run: cp coverage-xml/coverage-summary-badge.svg $GITHUB_WORKSPACE/coverage-badge.svg
-  
-        - name: Publish coverage badge
-          uses: actions/upload-artifact@v2
-          with:
-            name: coverage-badge
-            path: $GITHUB_WORKSPACE/coverage-badge.svg
-
   build:
     name: Build
     runs-on: ubuntu-latest
